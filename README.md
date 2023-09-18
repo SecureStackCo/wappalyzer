@@ -508,3 +508,35 @@ Application version information can be obtained from a pattern using a capture g
     </tr>
   </tbody>
 </table>
+
+
+
+# Run CLI
+## install yarn
+`npm i -g yarn`
+## install packages
+(in root dir of project)
+`yarn install`
+
+## build browser extensions & wapp setup (~10 mins initially)
+Choose a version number, here it is 6.10.66-ss, it is required for this command to work
+(in root dir of project)
+`yarn run build 6.10.66-ss`
+
+
+## manual step before running CLI
+(in root dir of project)
+Copy File:
+`cp ./src/categories.json ./src/drivers/npm/from_build/categories.json`
+Copy Folder:
+`cp -r ./src/technologies ./src/drivers/npm/from_build/technologies`
+
+
+## install deps for CLI
+`cd ./src/drivers/npm/`
+`yarn install`
+
+
+## run the CLI
+cd ./src
+node ./drivers/npm/cli.js https://niftybank.org
