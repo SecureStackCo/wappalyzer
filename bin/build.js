@@ -16,7 +16,7 @@ if (!version) {
   process.exit(1)
 }
 
-;['./src/manifest-v2.json', './src/manifest-v3.json'].forEach((file) => {
+;['./src/manifest-v2.json', './src/manifest-v3.json', './src/drivers/npm/package.json'].forEach((file) => {
   const json = JSON.parse(fs.readFileSync(file))
 
   json.version = version
@@ -24,7 +24,7 @@ if (!version) {
   fs.writeFileSync(file, JSON.stringify(json, null, 2))
 })
 
-fs.copyFileSync(`./src/manifest.json`, './src/manifest.bak.json')
+try { fs.copyFileSync(`./src/manifest.json`, './src/manifest.bak.json') } catch { }
 
 fs.copyFileSync(`./src/manifest-v2.json`, './src/manifest.json')
 
@@ -42,4 +42,4 @@ zip.addLocalFolder('./src', '')
 
 zip.writeZip('./build/webextension-v3.zip')
 
-fs.copyFileSync(`./src/manifest.bak.json`, './src/manifest.json')
+try { fs.copyFileSync(`./src/manifest.bak.json`, './src/manifest.json') } catch { }
